@@ -40,6 +40,15 @@ class FluxAndMonoServicesTest {
     }
 
     @Test
+    void fruitsMapFluxFluxString() {
+        var fruitsFlux = fluxAndMonoServices.fruitsMapFluxFluxString();
+
+        StepVerifier.create(fruitsFlux)
+                .expectNextCount(3)
+                .verifyComplete();
+    }
+
+    @Test
     void fruitsFluxFilter() {
         var fruitsFlux = fluxAndMonoServices.fruitsFluxFilter(5).log();
 
@@ -51,6 +60,15 @@ class FluxAndMonoServicesTest {
     @Test
     void fruitsFluxFilterMap() {
         var fruitsFlux = fluxAndMonoServices.fruitsFluxFilterMap(5);
+
+        StepVerifier.create(fruitsFlux)
+                .expectNext("ORANGE","BANANA")
+                .verifyComplete();
+    }
+
+    @Test
+    void fruitsFluxMapFilter() {
+        var fruitsFlux = fluxAndMonoServices.fruitsFluxMapFilter(5);
 
         StepVerifier.create(fruitsFlux)
                 .expectNext("ORANGE","BANANA")

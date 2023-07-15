@@ -26,8 +26,28 @@ public class FluxAndMonoServices {
 
     public Flux<String> fruitsFluxFilterMap(int number) {
         return Flux.fromIterable(List.of("Mango","Orange","Banana"))
+                .log()
                 .filter(s -> s.length() > number)
-                .map(String::toUpperCase);
+                .log()
+                .map(String::toUpperCase)
+                .log();
+    }
+
+    public Flux<Flux<String>> fruitsMapFluxFluxString() {
+        return Flux.fromIterable(List.of("Mango","Orange","Banana"))
+                .log()
+                .map(s -> Flux.just(s.split("")).log()).log()
+                .log();
+    }
+
+//    Do not use, unless the filtering cannot be done before mapping
+    public Flux<String> fruitsFluxMapFilter(int number) {
+        return Flux.fromIterable(List.of("Mango","Orange","Banana"))
+                .log()
+                .map(String::toUpperCase)
+                .log()
+                .filter(s -> s.length() > number)
+                .log();
     }
 
     public Flux<String> fruitsFluxFlatMap() {
