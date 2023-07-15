@@ -107,7 +107,7 @@ class FluxAndMonoServicesTest {
     void fruitsFluxTransform() {
 
         var fruitsFlux
-                = fluxAndMonoServices.fruitsFluxTransform(10);
+                = fluxAndMonoServices.fruitsFluxTransform(5);
 
         StepVerifier.create(fruitsFlux)
                 .expectNext("Orange","Banana")
