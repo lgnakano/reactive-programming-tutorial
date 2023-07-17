@@ -22,29 +22,11 @@ class FluxAndMonoServicesTest {
     }
 
     @Test
-    void fruitMono() {
-        var fruitsMono = fluxAndMonoServices.fruitMono();
-
-        StepVerifier.create(fruitsMono)
-                .expectNext("Mango")
-                .verifyComplete();
-    }
-
-    @Test
     void fruitsFluxMap() {
         var fruitsFlux = fluxAndMonoServices.fruitsFluxMap();
 
         StepVerifier.create(fruitsFlux)
                 .expectNext("MANGO","ORANGE","BANANA")
-                .verifyComplete();
-    }
-
-    @Test
-    void fruitsMapFluxFluxString() {
-        var fruitsFlux = fluxAndMonoServices.fruitsMapFluxFluxString();
-
-        StepVerifier.create(fruitsFlux)
-                .expectNextCount(3)
                 .verifyComplete();
     }
 
@@ -63,6 +45,15 @@ class FluxAndMonoServicesTest {
 
         StepVerifier.create(fruitsFlux)
                 .expectNext("ORANGE","BANANA")
+                .verifyComplete();
+    }
+
+    @Test
+    void fruitsMapFluxFluxString() {
+        var fruitsFlux = fluxAndMonoServices.fruitsMapFluxFluxString();
+
+        StepVerifier.create(fruitsFlux)
+                .expectNextCount(3)
                 .verifyComplete();
     }
 
@@ -94,15 +85,6 @@ class FluxAndMonoServicesTest {
     }
 
     @Test
-    void fruitMonoFlatMap() {
-        var fruitsFlux = fluxAndMonoServices.fruitMonoFlatMap();
-
-        StepVerifier.create(fruitsFlux)
-                .expectNextCount(1)
-                .verifyComplete();
-    }
-
-    @Test
     void fruitsFluxConcatMap() {
 
         var fruitsFlux = fluxAndMonoServices.fruitsFluxConcatMap();
@@ -111,6 +93,17 @@ class FluxAndMonoServicesTest {
                 .expectNextCount(17)
                 .verifyComplete();
     }
+
+    @Test
+    void fruitMonoFlatMap() {
+        var fruitsFlux = fluxAndMonoServices.fruitMonoFlatMap();
+
+        StepVerifier.create(fruitsFlux)
+                .expectNextCount(1)
+                .verifyComplete();
+    }
+
+
 
     @Test
     void fruitMonoFlatMapMany() {
@@ -228,6 +221,15 @@ class FluxAndMonoServicesTest {
                 .fruitsFluxZipTuple().log();
         StepVerifier.create(fruitsFlux)
                 .expectNext("MangoTomatoPotato","OrangeLemonBeans")
+                .verifyComplete();
+    }
+
+    @Test
+    void fruitMono() {
+        var fruitsMono = fluxAndMonoServices.fruitMono();
+
+        StepVerifier.create(fruitsMono)
+                .expectNext("Mango")
                 .verifyComplete();
     }
 

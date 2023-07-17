@@ -196,17 +196,16 @@ public class FluxAndMonoServices {
                 .map(objects -> objects.getT1() + objects.getT2() + objects.getT3());
     }
 
+    public Mono<String> fruitMono() {
+        return Mono.just("Mango").log();
+    }
+
     public Mono<String> fruitsMonoZipWith() {
         var fruits = Mono.just("Mango");
         var veggies = Mono.just("Tomato");
 
         return fruits.zipWith(veggies,
                 (first,second) -> first+second).log();
-    }
-
-
-    public Mono<String> fruitMono() {
-        return Mono.just("Mango").log();
     }
 
 
